@@ -1,7 +1,6 @@
 ﻿using DataAccess.Abstract;
 using System;
 using System.Collections.Generic;
-using System.Text;
 using Entities.Concrete;
 using System.Linq;
 using System.Linq.Expressions;

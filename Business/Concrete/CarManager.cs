@@ -3,9 +3,6 @@ using DataAccess.Abstract;
 using Entities.Concrete;
 using System;
 using System.Collections.Generic;
-using System.Runtime.InteropServices;
-using System.Text;
-using System.Xml;
 
 namespace Business.Concrete
 {

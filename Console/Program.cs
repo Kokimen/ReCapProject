@@ -1,8 +1,4 @@
 ﻿using Business.Concrete;
-using DataAccess.Abstract;
-using DataAccess.Concrete.InMemory;
-using Entities.Concrete;
-using System;
 using DataAccess.Concrete.EntityFramework.Repository;
 
 namespace Console
