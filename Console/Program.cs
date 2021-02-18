@@ -1,5 +1,6 @@
 ﻿using Business.Concrete;
-using DataAccess.Concrete.EntityFramework.Repository;
+using DataAccess.Concrete.EntityFramework;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace Console
 {
@@ -7,12 +8,30 @@ namespace Console
     {
         static void Main()
         {
-            CarManager carManager = new CarManager(new EfCarDal());
-            foreach (var car in carManager.GetAll()) 
+            //CarGetAllTest();
+
+            //CarGetDetailsTest();
+        }
+
+        private static void CarGetDetailsTest()
+        {
+            var carManager = new CarManager(new EfCarDal());
+            foreach (var car in carManager.GetCarDetails())
             {
-                System.Console.WriteLine(car.CarId + " Numaralı " + car.BrandId + " Markalı " + car.ColorId + " Renkli " + car.ModelYear + " Model Yılı " + car.DailyPrice + " Günlük Ücretli " + car.Description + " Otomobil ");
+                System.Console.WriteLine(
+                    $"{car.CarId}--{car.BrandName}--{car.ColorName}--{car.DailyPrice}--{car.Description}");
             }
-           
+        }
+
+        private static void CarGetAllTest()
+        {
+            CarManager carManager = new CarManager(new EfCarDal());
+            foreach (var car in carManager.GetAll())
+            {
+                System.Console.WriteLine(car.CarId + " Numaralı " + car.BrandId + " Markalı " + car.ColorId +
+                                         " Renkli " + car.ModelYear + " Model Yılı " + car.DailyPrice +
+                                         " Günlük Ücretli " + car.Description + " Otomobil ");
+            }
         }
     }
 }

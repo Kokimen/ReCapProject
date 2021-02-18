@@ -25,7 +25,7 @@ namespace Business.Concrete
             throw new NotImplementedException();
         }
 
-        public Brand Get(int id)
+        public Brand GetById(int id)
         {
             throw new NotImplementedException();
         }

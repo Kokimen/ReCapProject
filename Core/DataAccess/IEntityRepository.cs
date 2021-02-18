@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
+using Core.Entities;
 
-namespace DataAccess.Abstract
+namespace Core.DataAccess
 {
-    public interface IEntityRepository<TX> where TX:class,new()
+    public interface IEntityRepository<TX> where TX:class, IEntity, new()
     {
         List<TX> GetAll(Expression<Func<TX, bool>> filter = null);
         TX Get(Expression<Func<TX, bool>> filter);
