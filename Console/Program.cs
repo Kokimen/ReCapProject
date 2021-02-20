@@ -10,13 +10,13 @@ namespace Console
         {
             //CarGetAllTest();
 
-            //CarGetDetailsTest();
+            CarGetDetailsTest();
         }
 
         private static void CarGetDetailsTest()
         {
             var carManager = new CarManager(new EfCarDal());
-            foreach (var car in carManager.GetCarDetails())
+            foreach (var car in carManager.GetCarDetails().Data)
             {
                 System.Console.WriteLine(
                     $"{car.CarId}--{car.BrandName}--{car.ColorName}--{car.DailyPrice}--{car.Description}");
@@ -26,7 +26,7 @@ namespace Console
         private static void CarGetAllTest()
         {
             CarManager carManager = new CarManager(new EfCarDal());
-            foreach (var car in carManager.GetAll())
+            foreach (var car in carManager.GetAll().Data)
             {
                 System.Console.WriteLine(car.CarId + " Numaralı " + car.BrandId + " Markalı " + car.ColorId +
                                          " Renkli " + car.ModelYear + " Model Yılı " + car.DailyPrice +
