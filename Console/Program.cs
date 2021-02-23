@@ -1,20 +1,24 @@
-﻿using Business.Concrete;
+﻿using System;
+using Business.Concrete;
+using Business.Constants;
 using DataAccess.Concrete.EntityFramework;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using Entities.Concrete;
 
 namespace Console
 {
-    class Program
+    public static class Program
     {
-        static void Main()
+        private static void Main()
         {
             //CarGetAllTest();
-
-            CarGetDetailsTest();
+            //AddCustomerTest();
+            //CustomerGetAllTest();
+            //CarGetDetailsTest();
+            RentCarTest();
         }
 
         private static void CarGetDetailsTest()
-        {
+        { 
             var carManager = new CarManager(new EfCarDal());
             foreach (var car in carManager.GetCarDetails().Data)
             {
@@ -33,5 +37,34 @@ namespace Console
                                          " Günlük Ücretli " + car.Description + " Otomobil ");
             }
         }
+
+        private static void AddCustomerTest()
+        {
+            var customerManager = new CustomerManager(new EfCustomerDal());
+            customerManager.Add(new Customer {UserId = 1, CompanyName = "Bosch" });
+            customerManager.Add(new Customer {UserId = 2, CompanyName = "Aygaz" });
+            customerManager.Add(new Customer {UserId = 3, CompanyName = "Aselsan" });
+        }
+
+        private static void CustomerGetAllTest()
+        {
+            var customerManager = new CustomerManager(new EfCustomerDal());
+            foreach (var customer in customerManager.GetAll().Data)
+            {
+                System.Console.WriteLine(customer.CustomerId + " / " + customer.UserId + " / " + customer.CompanyName);
+            }
+        }
+
+        private static void RentCarTest()
+        {
+            var rentManager = new RentManager(new EfRentDal());
+            rentManager.Add(new Rent {CarId = 5, CustomerId = 1});
+            foreach (var rent in rentManager.GetAll().Data)
+            {
+                
+                System.Console.WriteLine(rent.CarId);
+
+            }
+        } //sıkıntı var
     }
 }

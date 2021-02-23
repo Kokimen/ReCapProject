@@ -1,15 +1,15 @@
-﻿using System;
+﻿using Core.Entities;
+using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
-using Core.Entities;
-using Microsoft.EntityFrameworkCore;
 
 namespace Core.DataAccess.EntityFramework
 {
-    public class EfEntityRepositoryBase<TXEntity, TXContext>:IEntityRepository<TXEntity>
-        where TXEntity:class,IEntity,new()
-        where TXContext: DbContext, new()
+    public class EfEntityRepositoryBase<TXEntity, TXContext> : IEntityRepository<TXEntity>
+        where TXEntity : class, IEntity, new()
+        where TXContext : DbContext, new()
     {
         public void Add(TXEntity entity)
         {
@@ -18,7 +18,7 @@ namespace Core.DataAccess.EntityFramework
                 var addEntity = context.Entry(entity);
                 addEntity.State = EntityState.Added;
                 context.SaveChanges();
-            }
+            } 
         }
 
         public void Delete(TXEntity entity)
@@ -30,7 +30,6 @@ namespace Core.DataAccess.EntityFramework
                 deletedEntity.State = EntityState.Deleted;
                 context.SaveChanges();
             }
-
         }
 
         public TXEntity Get(Expression<Func<TXEntity, bool>> filter)
@@ -40,10 +39,9 @@ namespace Core.DataAccess.EntityFramework
             {
                 return context.Set<TXEntity>().SingleOrDefault(filter);
             }
-
         }
 
-        public List<TXEntity> GetAll(Expression<Func<TXEntity, bool>> filter = null)
+        public List<TXEntity> GetAll(Expression<Func<TXEntity, bool>> filter=null) //sıkıntı var
         {
             using (TXContext context = new TXContext())
             {

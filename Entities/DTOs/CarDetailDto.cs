@@ -7,6 +7,5 @@
         public string ColorName { get; set; }
         public decimal DailyPrice { get; set; }
         public string Description { get; set; }
-
     }
 }
