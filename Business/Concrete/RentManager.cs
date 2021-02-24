@@ -20,6 +20,12 @@ namespace Business.Concrete
 
         public IResult Add(Rent rent) //sıkıntı var
         {
+            var rentCar = _rentDal.GetAll(r => r.CarId == rent.CarId && r.ReturnDate==null);
+            if (rentCar.Count>0)
+            {
+                return new ErrorResult(Messages.CarNameInvalid);
+            }
+
             _rentDal.Add(rent);
             return new SuccessResult(Messages.Added);
         }

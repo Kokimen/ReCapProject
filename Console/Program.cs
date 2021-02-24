@@ -30,11 +30,16 @@ namespace Console
         private static void CarGetAllTest()
         {
             CarManager carManager = new CarManager(new EfCarDal());
-            foreach (var car in carManager.GetAll().Data)
+            var result = carManager.GetAll();
+            if (result.Success == true)
             {
-                System.Console.WriteLine(car.CarId + " Numaralı " + car.BrandId + " Markalı " + car.ColorId +
-                                         " Renkli " + car.ModelYear + " Model Yılı " + car.DailyPrice +
-                                         " Günlük Ücretli " + car.Description + " Otomobil ");
+                System.Console.WriteLine(result.Message);
+                foreach (var car in carManager.GetAll().Data)
+                {
+                    System.Console.WriteLine(car.CarId + " Numaralı " + car.BrandId + " Markalı " + car.ColorId +
+                                             " Renkli " + car.ModelYear + " Model Yılı " + car.DailyPrice +
+                                             " Günlük Ücretli " + car.Description + " Otomobil ");
+                }
             }
         }
 
@@ -58,13 +63,15 @@ namespace Console
         private static void RentCarTest()
         {
             var rentManager = new RentManager(new EfRentDal());
-            rentManager.Add(new Rent {CarId = 5, CustomerId = 1});
-            foreach (var rent in rentManager.GetAll().Data)
-            {
+            var result = rentManager.Add(new Rent {CarId = 1, CustomerId = 1, RentDate = DateTime.Now, ReturnDate = null});
+            System.Console.WriteLine(result.Message);
+            
+            //foreach (var rent in rentManager.GetAll().Data)
+            //{
                 
-                System.Console.WriteLine(rent.CarId);
+            //    System.Console.WriteLine(rent.CarId);
 
-            }
+            //}
         } //sıkıntı var
     }
 }
