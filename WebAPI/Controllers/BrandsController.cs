@@ -52,7 +52,10 @@ namespace WebAPI.Controllers
         public IActionResult GetById(int brandId)
         {
             var result = _brandService.GetById(brandId);
-            if (result.Success) return Ok(result);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
 
             return BadRequest(result);
         }
