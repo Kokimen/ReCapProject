@@ -5,6 +5,7 @@ using Business.Constants;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
+using Microsoft.AspNetCore.Http;
 
 namespace Business.Concrete
 {
@@ -21,6 +22,11 @@ namespace Business.Concrete
         {
             _carImageDal.Add(carImage);
             return new SuccessResult(Messages.Added);
+        }
+
+        public IResult Add(IFormFile formFile, CarImage carImage)
+        {
+            throw new NotImplementedException();
         }
 
         public IResult Update(CarImage carImage)
